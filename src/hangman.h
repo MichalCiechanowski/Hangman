@@ -1,3 +1,6 @@
+#ifndef HANGMAN_H
+#define HANGMAN_H
+
 #include <vector>
 #include <string>
 
@@ -20,3 +23,5 @@ class hangman {
     void Win();
     void Loose();
 };
+
+#endif
