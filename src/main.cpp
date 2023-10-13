@@ -1,6 +1,6 @@
 #include "hangman.h"
 
-int main(){
+int main() {
   hangman game;
   for (;;) {
     game.game();
