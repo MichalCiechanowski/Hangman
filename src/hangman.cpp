@@ -8,7 +8,7 @@
 #include "hangman.h"
 
 hangman::hangman() {
-  std::cout << "Welcome in Hangman game !" << std::endl;
+  std::cout << "Welcome in Hangman game !" << '\n';
   std::cout << "Enter your name: ";
   std::cin >> players_name;
   hangman::setPassword();
@@ -19,17 +19,17 @@ void hangman::game() {
   if (guess_count == 11) {
     hangman::Loose();
   }
-  std::cout << "Player: " << players_name << std::endl << std::endl;
-  std::cout << hangman::password_hider(password) << std::endl;
-  std::cout << hangman::print_guessed_letters(guessed_letters) << std::endl;
-  std::cout << "Remaining trials: " << 11 - guess_count << std::endl;
+  std::cout << "Player: " << players_name << '\n' << '\n';
+  std::cout << hangman::password_hider(password) << '\n';
+  std::cout << hangman::print_guessed_letters(guessed_letters) << '\n';
+  std::cout << "Remaining trials: " << 11 - guess_count << '\n';
   std::cout << "Guess letter or word: ";
   std::cin >> guess_letter;
 
   if (guess_letter.size() == 1) {
     leter = guess_letter.at(0);
     if (std::count(guessed_letters.begin(),guessed_letters.end(),leter)) {
-        std::cout << "You already guessed this letter. Please guess a diferns one !" << std::endl;
+        std::cout << "You already guessed this letter. Please guess a diferns one !" << '\n';
         std::chrono::seconds timespan(2);
         std::this_thread::sleep_for(timespan);
     } else {
@@ -102,14 +102,15 @@ void hangman::setPassword() {
 
 void hangman::Win() {
   system("clear");
-  std::cout << "You won the game !" << std::endl;
+  std::cout << "You won the game !" << '\n';
   std::cout << "The password was: " << password;
   exit(0);
 }
 
 void hangman::Loose() {
   system("clear");
-  std::cout << "You lost the game :(" << std::endl;
-  std::cout << "The password was: " << password;
+  password[0] = toupper(password[0]);
+  std::cout << "You lost the game :(" << '\n';
+  std::cout << "The password was: " << password << '\n';
   exit(0);
 }
