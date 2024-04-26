@@ -9,9 +9,6 @@
 #include <vector>
 
 class Hangman {
-  public:
-    Hangman();
-    void game();
   private:
     char letter;
     int guessCount = 0;
@@ -26,6 +23,10 @@ class Hangman {
     void setPassword();
     void win();
     void lose();
+    
+  public:
+    Hangman();
+    void game();
 };
 
 #endif
