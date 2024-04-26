@@ -1,7 +1,7 @@
 #include "hangman.h"
 
 int main() {
-  hangman game;
+  Hangman game;
   for (;;) {
     game.game();
   }

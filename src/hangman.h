@@ -8,24 +8,24 @@
 #include <thread>
 #include <vector>
 
-class hangman {
+class Hangman {
   public:
-    hangman();
+    Hangman();
     void game();
   private:
-    char leter;
-    int guess_count = 0;
+    char letter;
+    int guessCount = 0;
     
-    std::vector<char> guessed_letters;
-    std::string password, players_name;
-    std::string guess_letter;
+    std::vector<char> guessedLetters;
+    std::string password, playersName;
+    std::string guessLetter;
 
-    std::string password_hider(std::string pass);
-    std::string print_guessed_letters(std::vector<char> leters);
+    std::string passwordHider(std::string pass);
+    std::string printGuessedLetters(std::vector<char> letters);
     
     void setPassword();
-    void Win();
-    void Loose();
+    void win();
+    void lose();
 };
 
 #endif
