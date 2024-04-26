@@ -1,5 +1,5 @@
 run:
-	g++ src/main.cpp src/hangman.cpp && ./a.out
+	g++ -std=c++17 src/main.cpp src/hangman.cpp && ./a.out
 
 compile:
-	g++ src/main.cpp src/hangman.cpp
+	g++ -std=c++17 src/main.cpp src/hangman.cpp
