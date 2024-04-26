@@ -1,8 +1,12 @@
 #ifndef HANGMAN_H
 #define HANGMAN_H
 
-#include <vector>
+#include <algorithm>
+#include <iostream>
 #include <string>
+#include <fstream>
+#include <thread>
+#include <vector>
 
 class hangman {
   public:
