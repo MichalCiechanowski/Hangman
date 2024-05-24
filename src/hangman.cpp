@@ -12,7 +12,7 @@ void Hangman::game() {
   if (guessCount == 11) {
     Hangman::lose();
   }
-  std::cout << "Player: " << playersName << '\n' << '\n';
+  std::cout << "Player: " << playersName << "\n\n";
   std::cout << Hangman::passwordHider(password) << '\n';
   std::cout << Hangman::printGuessedLetters(guessedLetters) << '\n';
   std::cout << "Remaining trials: " << 11 - guessCount << '\n';
@@ -21,22 +21,24 @@ void Hangman::game() {
 
   if (guessLetter.size() == 1) {
     letter = guessLetter.at(0);
-    if (std::count(guessedLetters.begin(),guessedLetters.end(),letter)) {
-        std::cout << "You already guessed this letter. Please guess a diferns one !" << '\n';
-        std::chrono::seconds timespan(2);
-        std::this_thread::sleep_for(timespan);
+    if (std::count(guessedLetters.begin(), guessedLetters.end(), letter)) {
+      std::cout << "You already guessed this letter. Please guess a diferns one !" << '\n';
+      std::chrono::seconds timespan(2);
+      std::this_thread::sleep_for(timespan);
     } else {
-        int tmp = 0;
-        guessedLetters.push_back(letter);
+      int tmp = 0;
+      if (!std::count(password.begin(), password.end(), letter)) {
         guessCount++;
-        for (int i=0; i<password.size(); i++) {
-          if (std::count(guessedLetters.begin(), guessedLetters.end(), password.at(i))) {
-            tmp++;
-          }
+      }
+      guessedLetters.push_back(letter);
+      for (int i = 0; i < password.size(); i++) {
+        if (std::count(guessedLetters.begin(), guessedLetters.end(), password.at(i))) {
+          tmp++;
         }
-        if (tmp == password.size()) {
-          Hangman::win();
-        }
+      }
+      if (tmp == password.size()) {
+        Hangman::win();
+      }
     }
   } else {
     if (guessLetter == password) {
@@ -49,8 +51,8 @@ void Hangman::game() {
 
 std::string Hangman::passwordHider(std::string pass) {
   std::string hidden_password;
-  for (int i=0; i<pass.length(); i++) {
-    if (std::count(guessedLetters.begin(),guessedLetters.end(),pass.at(i))) {
+  for (int i = 0; i < pass.length(); i++) {
+    if (std::count(guessedLetters.begin(), guessedLetters.end(), pass.at(i))) {
       if (i == 0) {
         hidden_password.push_back(toupper(pass.at(i)));
       } else {
@@ -65,9 +67,9 @@ std::string Hangman::passwordHider(std::string pass) {
 
 std::string Hangman::printGuessedLetters(std::vector<char> letters) {
   std::string answer = "Guessed letters: ";
-  for (int i=0; i<letters.size(); i++) {
+  for (int i = 0; i < letters.size(); i++) {
     answer.push_back(letters.at(i));
-    if (i+1 != letters.size()) {
+    if (i + 1 != letters.size()) {
       answer.push_back(',');
       answer.push_back(' ');
     }
@@ -82,7 +84,7 @@ void Hangman::setPassword() {
   if (File.is_open()) {
     std::string read_tmp, tmp;
     while (getline(File, read_tmp)) {
-      for (int i=0; i<read_tmp.size(); i++) {
+      for (int i = 0; i < read_tmp.size(); i++) {
         tmp.push_back(tolower(read_tmp.at(i)));
       }
       words.push_back(tmp);
